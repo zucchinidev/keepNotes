@@ -1,0 +1,27 @@
+.title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: left;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+.value {
+    text-align: left;
+    font-size: 1.4em;
+    font-weight: 200;
+}
+
+.icon {
+    position: absolute;
+    color: #000;
+    background-color: white;
+    font-size: 24px;
+    top: -10px;
+    right: -10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    cursor: pointer;
+    border: solid 1px #ccc;
+    line-height: 24px;
+}
