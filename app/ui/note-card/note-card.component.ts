@@ -8,7 +8,7 @@ import {INote} from '../../interfaces/';
 })
 export class NoteCardComponent implements OnInit {
   @Input() note: INote;
-  @Output() checked: EventEmitter<INote> = new EventEmitter();
+  @Output() checked: EventEmitter<any> = new EventEmitter();
   showCheck: boolean = false;
 
   constructor() {

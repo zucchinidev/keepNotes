@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {INote} from '../interfaces/';
+import {NoteService} from '../services/note.service';
 
 @Component({
   selector: 'notes-container',
@@ -9,39 +10,10 @@ import {INote} from '../interfaces/';
 export class NotesComponent implements OnInit {
   notes: INote[];
 
-  constructor() {
-    this.notes = [{
-      title: 'new note',
-      value: 'note here',
-      color: 'seagreen'
-    }, {
-      title: 'new note',
-      value: 'note here',
-      color: 'tomato'
-    }, {
-      title: 'new note',
-      value: 'note here',
-      color: 'olive'
-    }, {
-      title: 'new note',
-      value: 'note here',
-      color: 'blue'
-    }, {
-      title: 'new note',
-      value: 'note here',
-      color: 'grey'
-    }, {
-      title: 'new note',
-      value: 'note here',
-      color: 'red'
-    }, {
-      title: 'new note',
-      value: 'note here',
-      color: 'yellow'
-    }];
-  }
+  constructor(private noteService: NoteService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.getNotes();
   }
 
   onNoteChecked(note: INote, index: number) {
@@ -52,4 +24,8 @@ export class NotesComponent implements OnInit {
     this.notes.push(note);
   }
 
+  private getNotes() {
+    this.noteService.getNotes()
+      .then((notes: INote[]) => this.notes = notes);
+  }
 }

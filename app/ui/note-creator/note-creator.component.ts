@@ -7,7 +7,7 @@ import {INote} from '../../interfaces/INote';
   styleUrls: ['app/ui/note-creator/note-creator.component.css']
 })
 export class NoteCreatorComponent implements OnInit {
-  @Output() createNote: EventEmitter<INote> = new EventEmitter();
+  @Output() createNote: EventEmitter<any> = new EventEmitter();
 
   colors: Array<string>;
   newNote: INote;
