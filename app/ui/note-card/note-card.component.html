@@ -1,5 +1,8 @@
-<div class="card col-xs-3 shadow">
-  <div class="icon" (click)="onChecked()">
+<div class="card col-xs-3 shadow"
+     [ngStyle]="{'background-color': note.color}"
+     (mouseenter)="toggle()"
+     (mouseleave)="toggle()">
+  <div class="icon" *ngIf="showCheck" (click)="onChecked()">
     <i class="material-icons">check</i>
   </div>
   <div class="card-block">
