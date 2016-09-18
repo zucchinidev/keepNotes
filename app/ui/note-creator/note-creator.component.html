@@ -1,12 +1,17 @@
 <div class="note-creator shadow">
-  <pre>
-    {{newNote | json}}
-  </pre>
   <form class="row" (submit)="onCreateNote()">
-    <input type="text" [(ngModel)]="newNote.title" name="title" placeholder="Title" class="col-xs-10 title">
-    <input type="text" [(ngModel)]="newNote.value" name="value" placeholder="Take a note..." class="col-xs-10">
+    <div class="form-group">
+      <input type="text" [(ngModel)]="newNote.title" name="title"
+             placeholder="Title" class="col-xs-10 title form-control"
+      *ngIf="fullForm">
+    </div>
+    <div class="form-group">
+      <input type="text" [(ngModel)]="newNote.value" name="value"
+             placeholder="Take a note..." class="col-xs-10 form-control"
+      (click)="toggle(true)">
+    </div>
     <div class="actions col-xs-12 row between-xs">
-      <button type="submit" class="btn-light">
+      <button type="submit" class="btn-light pull-xs-right">
         Done
       </button>
     </div>

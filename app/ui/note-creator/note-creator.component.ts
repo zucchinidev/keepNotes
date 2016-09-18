@@ -8,6 +8,7 @@ import {INote} from '../../interfaces/INote';
 })
 export class NoteCreatorComponent implements OnInit {
   newNote: INote;
+  fullForm: boolean;
 
   @Output() createNote: EventEmitter<INote> = new EventEmitter();
 
@@ -21,6 +22,7 @@ export class NoteCreatorComponent implements OnInit {
 
   constructor() {
     this.newNote = NoteCreatorComponent.createEmptyNote();
+    this.fullForm = false;
   }
 
   ngOnInit(): void {
@@ -37,7 +39,12 @@ export class NoteCreatorComponent implements OnInit {
     }
   }
 
+  toggle(value: boolean): void {
+    this.fullForm = value;
+  }
+
   private reset(): void {
     this.newNote = NoteCreatorComponent.createEmptyNote();
+    this.toggle(false);
   }
 }
