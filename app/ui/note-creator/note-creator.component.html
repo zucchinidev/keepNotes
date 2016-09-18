@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<div class="note-creator shadow">
+  <pre>
+    {{newNote | json}}
+  </pre>
+  <form class="row" (submit)="onCreateNote()">
+    <input type="text" [(ngModel)]="newNote.title" name="title" placeholder="Title" class="col-xs-10 title">
+    <input type="text" [(ngModel)]="newNote.value" name="value" placeholder="Take a note..." class="col-xs-10">
+    <div class="actions col-xs-12 row between-xs">
+      <button type="submit" class="btn-light">
+        Done
+      </button>
+    </div>
+  </form>
+</div>

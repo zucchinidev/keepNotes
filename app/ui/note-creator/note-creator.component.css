@@ -1,0 +1,10 @@
+.note-creator {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 3px;
+}
+
+.title {
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.8);
+}

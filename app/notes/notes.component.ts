@@ -48,4 +48,8 @@ export class NotesComponent implements OnInit {
     this.notes.splice(index, 1);
   }
 
+  onCreateNote(note: INote) {
+    this.notes.push(note);
+  }
+
 }
