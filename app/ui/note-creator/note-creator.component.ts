@@ -7,10 +7,11 @@ import {INote} from '../../interfaces/INote';
   styleUrls: ['app/ui/note-creator/note-creator.component.css']
 })
 export class NoteCreatorComponent implements OnInit {
+  @Output() createNote: EventEmitter<INote> = new EventEmitter();
+
+  colors: Array<string>;
   newNote: INote;
   fullForm: boolean;
-
-  @Output() createNote: EventEmitter<INote> = new EventEmitter();
 
   private static createEmptyNote(): INote {
     return {
@@ -20,9 +21,21 @@ export class NoteCreatorComponent implements OnInit {
     };
   }
 
+  private static getColors() {
+    return [
+      '#B19CD9',
+      '#FF6961',
+      '#77DD77',
+      '#AEC6CF',
+      '#F49AC2',
+      '#FFFFFF',
+    ];
+  }
+
   constructor() {
     this.newNote = NoteCreatorComponent.createEmptyNote();
     this.fullForm = false;
+    this.colors = NoteCreatorComponent.getColors();
   }
 
   ngOnInit(): void {
@@ -41,6 +54,10 @@ export class NoteCreatorComponent implements OnInit {
 
   toggle(value: boolean): void {
     this.fullForm = value;
+  }
+
+  onColorSelected(color: string): void {
+    this.newNote.color = color;
   }
 
   private reset(): void {

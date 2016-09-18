@@ -8,6 +8,7 @@ import {AppRootComponent} from './root/app-root.component';
 import {MainContainerComponent} from './main-container/main-container.component';
 import {AppBarComponent, NoteCardComponent, NoteCreatorComponent} from './ui/index';
 import {NotesComponent} from './notes/notes.component';
+import {ColorPickerComponent} from './ui/color-picker/color-picker.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import {NotesComponent} from './notes/notes.component';
     AppBarComponent,
     NotesComponent,
     NoteCardComponent,
-    NoteCreatorComponent
+    NoteCreatorComponent,
+    ColorPickerComponent
   ],
   providers: [],
   bootstrap: [

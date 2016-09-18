@@ -1,0 +1,33 @@
+.color-selector {
+    position: relative;
+}
+
+.selector {
+    min-width: 120px;
+    width: 175px;
+    border: 1px solid lightgrey;
+    padding: 10px;
+    background-color: #efefef;
+    position: absolute;
+    top: -50px;
+    left: 0;
+}
+.color {
+    height: 30px;
+    width: 30px;
+    border-radius: 100%;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.color:hover {
+    border: 2px solid darkgrey;
+}
+
+.icon {
+    font-size: 1.4rem;
+    color: grey;
+    cursor: pointer;
+}

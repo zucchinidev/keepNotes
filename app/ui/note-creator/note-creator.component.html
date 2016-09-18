@@ -1,4 +1,4 @@
-<div class="note-creator shadow">
+<div class="note-creator shadow" [ngStyle]="{'background-color': newNote.color}">
   <form class="row" (submit)="onCreateNote()">
     <div class="form-group">
       <input type="text" [(ngModel)]="newNote.title" name="title"
@@ -11,6 +11,12 @@
       (click)="toggle(true)">
     </div>
     <div class="actions col-xs-12 row between-xs">
+      <div class="col-xs-3">
+        <color-picker
+        [colors]="colors"
+        (selectedColor)="onColorSelected($event)"
+        ></color-picker>
+      </div>
       <button type="submit" class="btn-light pull-xs-right">
         Done
       </button>
