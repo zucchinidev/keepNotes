@@ -6,9 +6,8 @@ import {FormsModule} from '@angular/forms';
 
 import {AppRootComponent} from './root/app-root.component';
 import {MainContainerComponent} from './main-container/main-container.component';
-import {AppBarComponent} from './ui/index';
+import {AppBarComponent, NoteCardComponent, NoteCreatorComponent} from './ui/index';
 import {NotesComponent} from './notes/notes.component';
-import {NoteCardComponent} from './ui/note-card/note-card.component';
 
 @NgModule({
   imports: [
@@ -20,7 +19,8 @@ import {NoteCardComponent} from './ui/note-card/note-card.component';
     MainContainerComponent,
     AppBarComponent,
     NotesComponent,
-    NoteCardComponent
+    NoteCardComponent,
+    NoteCreatorComponent
   ],
   providers: [],
   bootstrap: [
