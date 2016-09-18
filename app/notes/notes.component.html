@@ -4,7 +4,11 @@
   </div>
   <div class="notes col-xs-10 offset-xs-1">
     <div class="row between-xs">
-      <note-card [note]="note"></note-card>
+      <note-card class="col-xs-3"
+                 *ngFor="let note of notes; let i = index"
+                 [note]="note"
+                 (checked)="onNoteChecked($event, i)"
+      ></note-card>
     </div>
   </div>
 </div>

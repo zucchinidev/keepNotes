@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {INote} from '../../interfaces/';
 
 @Component({
@@ -8,6 +8,7 @@ import {INote} from '../../interfaces/';
 })
 export class NoteCardComponent implements OnInit {
   @Input() note: INote;
+  @Output() checked: EventEmitter<INote> = new EventEmitter();
   showCheck: boolean = false;
 
   constructor() {
@@ -21,6 +22,6 @@ export class NoteCardComponent implements OnInit {
   }
 
   onChecked() {
-
+    this.checked.next(this.note);
   }
 }
