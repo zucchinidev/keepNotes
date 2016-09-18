@@ -17,7 +17,8 @@ export class NoteCreatorComponent implements OnInit {
     return {
       title: '',
       value: '',
-      color: ''
+      color: '',
+      id: undefined
     };
   }
 

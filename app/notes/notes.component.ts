@@ -17,15 +17,17 @@ export class NotesComponent implements OnInit {
   }
 
   onNoteChecked(note: INote, index: number) {
-    this.notes.splice(index, 1);
+    this.noteService.remove(note)
+      .subscribe((n) => this.notes.splice(index, 1));
   }
 
   onCreateNote(note: INote) {
-    this.notes.push(note);
+    this.noteService.create(note)
+      .subscribe((res) => this.notes.push(res['data'] as INote));
   }
 
   private getNotes() {
     this.noteService.getNotes()
-      .then((notes: INote[]) => this.notes = notes);
+      .subscribe((res) => this.notes = res['data'] as INote[]);
   }
 }

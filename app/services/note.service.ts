@@ -18,10 +18,16 @@ export class NoteService {
 
   }
 
-  getNotes(): Promise<INote[]> {
-    return this.get(this.noteUrl)
-      .toPromise()
-      .then((response) => response.data as INote[]);
+  getNotes(): Observable<INote[]> {
+    return this.get(this.noteUrl);
+  }
+
+  remove(note: INote): Observable<void> {
+    return this.delete(`${this.noteUrl}/${note.id}`);
+  }
+
+  create(note: INote): Observable<INote> {
+    return this.post(this.noteUrl, note);
   }
 
   private getJson(response: Response) {
