@@ -1,3 +1,5 @@
-/**
- * Created by Andrea on 18/09/2016.
- */
+export interface INote {
+  title: string;
+  value: string;
+  color: string;
+}
