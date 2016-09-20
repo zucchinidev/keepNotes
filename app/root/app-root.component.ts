@@ -7,5 +7,5 @@ import {Component} from '@angular/core';
 
 })
 export class AppRootComponent {
-  title: string = 'Keep Notes';
+  title: string = 'Keep Notes!!!';
 }
