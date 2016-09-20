@@ -5,6 +5,7 @@ import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 
 
+import {routing} from './config/router/router';
 import {AppRootComponent} from './root/app-root.component';
 import {MainContainerComponent} from './main-container/main-container.component';
 import {AppBarComponent, NoteCardComponent, NoteCreatorComponent} from './ui/index';
@@ -13,13 +14,16 @@ import {ColorPickerComponent} from './ui/color-picker/color-picker.component';
 import {InMemoryWebApiModule} from 'angular2-in-memory-web-api';
 import {InMemoryDataService} from './services/in-memory-data.service';
 import {NoteService} from './services/note.service';
+import {AboutContainerComponent} from './about-container/about-container.component';
+
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService)
+    InMemoryWebApiModule.forRoot(InMemoryDataService),
+    routing
   ],
   declarations: [
     AppRootComponent,
@@ -28,7 +32,8 @@ import {NoteService} from './services/note.service';
     NotesComponent,
     NoteCardComponent,
     NoteCreatorComponent,
-    ColorPickerComponent
+    ColorPickerComponent,
+    AboutContainerComponent
   ],
   providers: [
     NoteService
