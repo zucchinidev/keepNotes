@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {INote} from '../interfaces/';
 import {NoteService} from '../services/note.service';
 
@@ -7,13 +7,17 @@ import {NoteService} from '../services/note.service';
   templateUrl: 'app/notes/notes.component.html',
   styleUrls: ['app/notes/notes.component.css']
 })
-export class NotesComponent implements OnInit {
+export class NotesComponent implements OnInit, OnDestroy {
   notes: INote[];
 
   constructor(private noteService: NoteService) {}
 
   ngOnInit(): void {
     this.getNotes();
+  }
+
+  ngOnDestroy(): void {
+    console.log('destroyed');
   }
 
   onNoteChecked(note: INote, index: number) {
