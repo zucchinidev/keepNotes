@@ -15,6 +15,8 @@ import {InMemoryWebApiModule} from 'angular2-in-memory-web-api';
 import {InMemoryDataService} from './services/in-memory-data.service';
 import {NoteService} from './services/note.service';
 import {AboutContainerComponent} from './about-container/about-container.component';
+import {Store} from './stores/store';
+import {StoreHelperService} from './services/store-helper.service';
 
 
 @NgModule({
@@ -36,6 +38,8 @@ import {AboutContainerComponent} from './about-container/about-container.compone
     AboutContainerComponent
   ],
   providers: [
+    Store,
+    StoreHelperService,
     NoteService
   ],
   bootstrap: [
