@@ -7,14 +7,14 @@ export class StoreHelperService {
 
   }
 
-  update(prop: any, state: State) {
+  update(prop: string, state: State) {
     const currentState = this.getCurrentState();
     this.store.setState(Object.assign({}, currentState, {
       [prop]: state
     }));
   }
 
-  add(prop: any, state: State) {
+  add(prop: string, state: State) {
     const currentState = this.getCurrentState();
     const collection = currentState[prop];
     this.store.setState(Object.assign({}, currentState, {
@@ -22,11 +22,11 @@ export class StoreHelperService {
     }));
   }
 
-  findAndUpdate(prop: any, state: State) {
+  findAndUpdate(prop: string, state: State) {
     const currentState = this.getCurrentState();
     const collection = currentState[prop];
-    const items = collection.map(item => {
-      if (item.id !== state['id']) {
+    const items = collection.map((item: Object) => {
+      if (item['id'] !== state['id']) {
         return item;
       }
       return Object.assign({}, item, state);
@@ -38,11 +38,11 @@ export class StoreHelperService {
   }
 
 
-  findAndDelete(prop: any, id: number) {
+  findAndDelete(prop: string, id: number) {
     const currentState = this.getCurrentState();
     const collection = currentState[prop];
     this.store.setState(Object.assign({}, currentState, {
-      [prop]: collection.filter(item => item['id'] !== id )
+      [prop]: collection.filter((item: Object) => item['id'] !== id )
     }));
   }
 
