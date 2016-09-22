@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Http, Response, Headers} from '@angular/http';
 import {Observable} from 'rxjs';
 import {INote} from '../interfaces/INote';
+import {StoreHelperService} from './store-helper.service';
 
 
 @Injectable()
@@ -14,20 +15,24 @@ export class NoteService {
     });
   }
 
-  constructor(private http: Http) {
+  constructor(private http: Http,
+              private storeHelperService: StoreHelperService) {
 
   }
 
   getNotes(): Observable<INote[]> {
-    return this.get(this.noteUrl);
+    return this.get(this.noteUrl)
+      .do(res => this.storeHelperService.update('notes', res.data));
   }
 
   remove(note: INote): Observable<void> {
-    return this.delete(`${this.noteUrl}/${note.id}`);
+    return this.delete(`${this.noteUrl}/${note.id}`)
+      .do(() => this.storeHelperService.findAndDelete('notes', parseInt(note.id, 10)));
   }
 
   create(note: INote): Observable<INote> {
-    return this.post(this.noteUrl, note);
+    return this.post(this.noteUrl, note)
+      .do(savedNote => this.storeHelperService.add('notes', savedNote.data));
   }
 
   private getJson(response: Response) {

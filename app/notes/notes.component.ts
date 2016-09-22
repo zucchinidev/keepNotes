@@ -1,6 +1,10 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {INote} from '../interfaces/';
 import {NoteService} from '../services/note.service';
+import {Store} from '../stores/store';
+import 'rxjs/Rx';
+import {Subscription} from 'rxjs';
+
 
 @Component({
   selector: 'notes-container',
@@ -9,14 +13,21 @@ import {NoteService} from '../services/note.service';
 })
 export class NotesComponent implements OnInit, OnDestroy {
   notes: INote[];
+  subscription: Subscription;
 
-  constructor(private noteService: NoteService) {}
+  constructor(private noteService: NoteService,
+              private store: Store) {
+  }
 
   ngOnInit(): void {
     this.getNotes();
+    // on store have the property changes
+    this.subscription = this.store.changes.pluck('notes')
+      .subscribe((notes: any) => this.notes = notes);
   }
 
   ngOnDestroy(): void {
+    this.subscription.unsubscribe();
     console.log('destroyed');
   }
 
@@ -27,7 +38,7 @@ export class NotesComponent implements OnInit, OnDestroy {
 
   onCreateNote(note: INote) {
     this.noteService.create(note)
-      .subscribe((res) => this.notes.push(res['data'] as INote));
+      .subscribe();
   }
 
   private getNotes() {

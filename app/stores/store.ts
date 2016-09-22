@@ -1,19 +1,10 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import 'rxjs/Rx';
-
-export interface Note {
-  color: string;
-  title: string;
-  value: string;
-  id?: string;
-  createAt?: string;
-  updateAt?: string;
-  userId?: string;
-}
+import {INote} from '../interfaces/INote';
 
 export interface State {
-  notes: Note[];
+  notes: INote[];
 }
 
 const defaultState: State = {
@@ -25,9 +16,12 @@ const _store = new BehaviorSubject<State>(defaultState);
 @Injectable()
 export class Store {
   private _store = _store;
-  changes = this._store.asObservable().distinctUntilChanged();
+  changes = this._store.asObservable()
+    .distinctUntilChanged()
+    .do(() => console.log('changes!!'));
 
   setState(state: State) {
+    console.log('state set: ', state);
     this._store.next(state);
   }
 
