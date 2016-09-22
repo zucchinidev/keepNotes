@@ -2,6 +2,7 @@
 
 ## Synopsis
 
+Capture what's on your mind. Add notes, list, photos and audio.
 
 ## Prerequisites
 
