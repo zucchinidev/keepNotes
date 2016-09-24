@@ -4,6 +4,10 @@
 
 Capture what's on your mind. Add notes, list, photos and audio.
 
+## Motivation
+
+ To learn about development with **NodeJS** & **Angular 2** using **TypeScript**
+ 
 ## Prerequisites
 
 Node.js and npm are essential to Angular 2 development. 
@@ -18,10 +22,6 @@ Older versions produce errors.
 We recommend [nvm](https://github.com/creationix/nvm) for managing 
 multiple versions of node and npm.
 
-## Motivation
-
- To learn about development with **NodeJS** & **Angular 2** using **TypeScript**
- 
 ## Installation
 
 * Install TypeScript Compiler CLI utility.
