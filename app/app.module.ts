@@ -17,6 +17,8 @@ import {NoteService} from './services/note.service';
 import {AboutContainerComponent} from './about-container/about-container.component';
 import {Store} from './stores/store';
 import {StoreHelperService} from './services/store-helper.service';
+import {AuthContainerComponent} from './auth-container/auth-container.component';
+import {AuthService} from './services/auth.service';
 
 
 @NgModule({
@@ -35,12 +37,14 @@ import {StoreHelperService} from './services/store-helper.service';
     NoteCardComponent,
     NoteCreatorComponent,
     ColorPickerComponent,
-    AboutContainerComponent
+    AboutContainerComponent,
+    AuthContainerComponent
   ],
   providers: [
     Store,
     StoreHelperService,
-    NoteService
+    NoteService,
+    AuthService
   ],
   bootstrap: [
     AppRootComponent
