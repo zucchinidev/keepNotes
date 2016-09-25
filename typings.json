@@ -1,9 +1,20 @@
 {
   "globalDependencies": {
     "angular-protractor": "registry:dt/angular-protractor#1.5.0+20160425143459",
+    "bluebird": "registry:dt/bluebird#3.0.0+20160907110115",
+    "body-parser": "registry:dt/body-parser#0.0.0+20160619023215",
     "core-js": "registry:dt/core-js#0.0.0+20160725163759",
+    "express": "registry:dt/express#4.0.0+20160708185218",
+    "express-serve-static-core": "registry:dt/express-serve-static-core#4.0.0+20160715232503",
     "jasmine": "registry:dt/jasmine#2.2.0+20160621224255",
-    "node": "registry:dt/node#6.0.0+20160831021119",
-    "selenium-webdriver": "registry:dt/selenium-webdriver#2.44.0+20160317120654"
+    "method-override": "registry:dt/method-override#0.0.0+20160317120654",
+    "mime": "registry:dt/mime#0.0.0+20160316155526",
+    "mongodb": "registry:dt/mongodb#2.1.0+20160602142941",
+    "mongoose": "registry:dt/mongoose#4.5.9+20160922172925",
+    "mongoose-promise": "registry:dt/mongoose-promise#4.5.4+20160822161941",
+    "mpromise": "registry:dt/mpromise#0.5.4+20160316155526",
+    "node": "registry:dt/node#6.0.0+20160923124626",
+    "selenium-webdriver": "registry:dt/selenium-webdriver#2.44.0+20160317120654",
+    "serve-static": "registry:dt/serve-static#0.0.0+20160606155157"
   }
 }
