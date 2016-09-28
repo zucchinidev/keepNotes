@@ -1,6 +1,6 @@
 import {IBaseBusiness} from './interfaces/base/base-business.interface';
 import {IUser} from '../model/interfaces/user.interface';
-import {UserRepository} from '../repository/user-reposotory';
+import {UserRepository} from '../repository/user-repository';
 
 export class UserBusiness implements IBaseBusiness<IUser> {
 
