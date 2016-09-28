@@ -7,6 +7,7 @@
     "express": "registry:dt/express#4.0.0+20160708185218",
     "express-serve-static-core": "registry:dt/express-serve-static-core#4.0.0+20160715232503",
     "jasmine": "registry:dt/jasmine#2.2.0+20160621224255",
+    "jsonwebtoken": "registry:dt/jsonwebtoken#0.0.0+20160720062725",
     "method-override": "registry:dt/method-override#0.0.0+20160317120654",
     "mime": "registry:dt/mime#0.0.0+20160316155526",
     "mongodb": "registry:dt/mongodb#2.1.0+20160602142941",
