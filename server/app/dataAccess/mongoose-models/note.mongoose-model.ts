@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose';
 import {INote} from '../../model/interfaces/note.interface';
-import {NoteScheme} from '../mongoose-schemas/note.sheme';
+import {NoteScheme} from '../mongoose-schemas/note.scheme';
 
 export class NoteMongooseModel {
   public static model: mongoose.Model<INote>;
