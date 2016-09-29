@@ -8,6 +8,10 @@ export class UserScheme extends BaseScheme {
         type: String,
         required: true
       },
+      email: {
+        type: String,
+        required: true
+      },
       password: {
         type: String,
         required: false
