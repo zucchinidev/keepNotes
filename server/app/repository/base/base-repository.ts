@@ -5,7 +5,7 @@ import * as mongoose from 'mongoose';
 
 export class BaseRepository<Model extends mongoose.Document> implements
   IReadRepository<Model>, IWriteRepository<Model> {
-  private model: mongoose.Model<Model>;
+  protected model: mongoose.Model<Model>;
 
   private static toObjectId(_id: string): mongoose.Types.ObjectId {
     return mongoose.Types.ObjectId.createFromHexString(_id);
