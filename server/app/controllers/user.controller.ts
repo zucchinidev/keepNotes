@@ -80,7 +80,9 @@ export class UserController extends BaseController implements IBaseController {
   autenticate(req: express.Request, res: express.Response): void {
     try {
       const model = <IUser> req.body;
-      // Todo implement.
+      this.userBusiness.authenticate(model)
+        .then(response => res.send(response))
+        .catch(err => res.send({error: err.message}));
     } catch (err) {
       UserController.checkForError(err, res);
     }
