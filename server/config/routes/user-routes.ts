@@ -14,7 +14,7 @@ export class UserRoutes {
     this.router.put('/', this.controller.update.bind(this.controller));
     this.router.patch('/', this.controller.patch.bind(this.controller));
     this.router.delete('/:id', this.controller.remove.bind(this.controller));
-    this.router.post('/autenticate', this.controller.autenticate.bind(this.controller));
+    this.router.post('/authenticate', this.controller.autenticate.bind(this.controller));
     return this.router;
   }
 }
