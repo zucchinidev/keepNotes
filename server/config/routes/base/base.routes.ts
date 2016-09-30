@@ -1,7 +1,7 @@
 import * as express from 'express';
-import {NotesRoutes} from '../notes-routes';
-import {UserRoutes} from '../user-routes';
-import {AuthRoutes} from '../auth-routes';
+import {NotesRoutes} from '../notes.routes';
+import {UserRoutes} from '../user.routes';
+import {AuthRoutes} from '../auth.routes';
 
 export class BaseRoutes {
   static routes(): express.Express {
