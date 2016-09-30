@@ -1,4 +1,4 @@
-import {BaseRepository} from './base/base-repository';
+import {BaseRepository} from './base/base.repository';
 import {INote} from '../model/interfaces/note.interface';
 import {NoteModel} from '../model/note.model';
 

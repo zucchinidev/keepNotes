@@ -1,6 +1,6 @@
-import {IBaseBusiness} from './interfaces/base/base-business.interface';
+import {IBaseBusiness} from './interfaces/base/base.business.interface';
 import {IUser} from '../model/interfaces/user.interface';
-import {UserRepository} from '../repository/user-repository';
+import {UserRepository} from '../repository/user.repository';
 import * as jwt from 'jsonwebtoken';
 import Constants from '../../config/constants/constants';
 

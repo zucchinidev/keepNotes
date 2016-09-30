@@ -1,6 +1,6 @@
 import {IDocument} from '../../model/interfaces/document.interface';
-import {IReadRepository} from '../interfaces/read-repository.interface';
-import {IWriteRepository} from '../interfaces/write-repository.interface';
+import {IReadRepository} from '../interfaces/read.repository.interface';
+import {IWriteRepository} from '../interfaces/write.repository.interface';
 import * as mongoose from 'mongoose';
 
 export class BaseRepository<Model extends mongoose.Document> implements

@@ -1,7 +1,7 @@
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
-import {MethodOverride} from '../methodOverride';
-import {BaseRoutes} from '../../../config/routes/base/baseRoutes';
+import {MethodOverride} from '../method-override';
+import {BaseRoutes} from '../../../config/routes/base/base.routes';
 
 type BodyParseMethod = express.RequestHandler;
 

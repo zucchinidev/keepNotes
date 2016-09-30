@@ -1,6 +1,6 @@
 import * as express from 'express';
 import {IBaseController} from './interfaces/base/base-controller.interface';
-import {NoteBusiness} from '../business/note-business';
+import {NoteBusiness} from '../business/note.business';
 import {BaseController} from './base/base.controller';
 import {INote} from '../model/interfaces/note.interface';
 

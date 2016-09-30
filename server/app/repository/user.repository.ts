@@ -1,4 +1,4 @@
-import {BaseRepository} from './base/base-repository';
+import {BaseRepository} from './base/base.repository';
 import {IUser} from '../model/interfaces/user.interface';
 import {UserModel} from '../model/user.model';
 

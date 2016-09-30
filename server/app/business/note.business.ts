@@ -1,6 +1,6 @@
-import {IBaseBusiness} from './interfaces/base/base-business.interface';
+import {IBaseBusiness} from './interfaces/base/base.business.interface';
 import {INote} from '../model/interfaces/note.interface';
-import {NoteRepository} from '../repository/note-reposotory';
+import {NoteRepository} from '../repository/note.repository';
 
 export class NoteBusiness implements IBaseBusiness<INote> {
 

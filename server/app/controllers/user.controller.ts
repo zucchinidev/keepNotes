@@ -1,7 +1,7 @@
 import * as express from 'express';
 import {IBaseController} from './interfaces/base/base-controller.interface';
 import {BaseController} from './base/base.controller';
-import {UserBusiness} from '../business/user-business';
+import {UserBusiness} from '../business/user.business';
 import {IUser} from '../model/interfaces/user.interface';
 
 export class UserController extends BaseController implements IBaseController {
@@ -69,18 +69,6 @@ export class UserController extends BaseController implements IBaseController {
     try {
       const model = <IUser> req.body;
       this.userBusiness.patch(model._id, model)
-        .then(response => res.send(response))
-        .catch(err => res.send({error: err.message}));
-    } catch (err) {
-      UserController.checkForError(err, res);
-    }
-  }
-
-
-  autenticate(req: express.Request, res: express.Response): void {
-    try {
-      const model = <IUser> req.body;
-      this.userBusiness.authenticate(model)
         .then(response => res.send(response))
         .catch(err => res.send({error: err.message}));
     } catch (err) {
