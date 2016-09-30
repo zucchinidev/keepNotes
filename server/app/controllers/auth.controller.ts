@@ -1,78 +1,32 @@
 import * as express from 'express';
-import {IBaseController} from './interfaces/base/base-controller.interface';
 import {BaseController} from './base/base.controller';
-import {UserBusiness} from '../business/user-business';
+import {AuthBusiness} from '../business/auth.business';
 import {IUser} from '../model/interfaces/user.interface';
+import {UserBusiness} from '../business/user.business';
+import {NextFunction} from 'express';
 
-export class UserController extends BaseController implements IBaseController {
+export class AuthController extends BaseController {
+  private authBusiness: AuthBusiness;
   private userBusiness: UserBusiness;
+
   constructor() {
     super();
+    this.authBusiness = new AuthBusiness();
     this.userBusiness = new UserBusiness();
   }
 
-  getAll(req: express.Request, res: express.Response): void {
+  verifyToken(req: express.Request, res: express.Response, next: NextFunction): void {
     try {
-      this.userBusiness.getAll()
-        .then(response => res.send(response))
-        .catch(err => res.send({error: err.message}));
+      const token = req.body.token || req.query.token || req.headers['x-access-token'];
+      this.authBusiness.verifyToken(token)
+        .then(response => {
+          req['decoded'] = response['decoded'];
+          next();
+          return;
+        })
+        .catch(err => res.status(403).send({error: err.message}));
     } catch (err) {
-      UserController.checkForError(err, res);
-    }
-  }
-
-  findById(req: express.Request, res: express.Response): void {
-    try {
-      const id = req.params.id;
-      this.userBusiness.findById(id)
-        .then(response => res.send(response))
-        .catch(err => res.send({error: err.message}));
-    } catch (err) {
-      UserController.checkForError(err, res);
-    }
-  }
-
-  create(req: express.Request, res: express.Response): void {
-    try {
-      const model = <IUser> req.body;
-      this.userBusiness.create(model)
-        .then(response => res.send(response))
-        .catch(err => res.send({error: err.message}));
-    } catch (err) {
-      UserController.checkForError(err, res);
-    }
-  }
-
-  update(req: express.Request, res: express.Response): void {
-    try {
-      const model = <IUser> req.body;
-      this.userBusiness.update(model._id, model)
-        .then(response => res.send(response))
-        .catch(err => res.send({error: err.message}));
-    } catch (err) {
-      UserController.checkForError(err, res);
-    }
-  }
-
-  remove(req: express.Request, res: express.Response): void {
-    try {
-      const id = req.params.id;
-      this.userBusiness.remove(id)
-        .then(response => res.send(response))
-        .catch(err => res.send({error: err.message}));
-    } catch (err) {
-      UserController.checkForError(err, res);
-    }
-  }
-
-  patch(req: express.Request, res: express.Response): void {
-    try {
-      const model = <IUser> req.body;
-      this.userBusiness.patch(model._id, model)
-        .then(response => res.send(response))
-        .catch(err => res.send({error: err.message}));
-    } catch (err) {
-      UserController.checkForError(err, res);
+      AuthController.checkForError(err, res);
     }
   }
 
@@ -84,7 +38,7 @@ export class UserController extends BaseController implements IBaseController {
         .then(response => res.send(response))
         .catch(err => res.send({error: err.message}));
     } catch (err) {
-      UserController.checkForError(err, res);
+      AuthController.checkForError(err, res);
     }
   }
 }
