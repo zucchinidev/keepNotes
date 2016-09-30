@@ -2,6 +2,7 @@ import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import {MethodOverride} from '../method-override';
 import {BaseRoutes} from '../../../config/routes/base/base.routes';
+import {NextFunction} from 'express';
 
 type BodyParseMethod = express.RequestHandler;
 
@@ -27,7 +28,7 @@ export class Middlewares {
   }
 
   private static getLoggerMiddleware(): express.RequestHandler {
-    return (req: express.Request, res: express.Response, next: Function) => {
+    return (req: express.Request, res: express.Response, next: NextFunction) => {
       console.log(`Request ${req.url} - method: ${req.method}`);
       if (req.body && Object.keys(req.body).length > 0) {
         console.log(`Body: ${JSON.stringify(req.body)}`);
