@@ -12,6 +12,30 @@ export class UserBusiness implements IBaseBusiness<IUser> {
     });
   }
 
+  private static createResponseObject({message, state = false, token}:
+    {message: string, state?: boolean, token?: string}) {
+    return {
+      success: state,
+      message: message,
+      token: token
+    };
+  }
+
+  private static onFindUser(userSend: IUser, resolve: Function, userFound: IUser) {
+    if (userSend.password !== userFound.password) {
+      const message = 'Authentication failed. Wrong password.';
+      resolve(UserBusiness.createResponseObject({message}));
+    } else {
+      const token = UserBusiness.getToken(userSend);
+      resolve(UserBusiness.createResponseObject({message: '', state: true, token}));
+    }
+  }
+
+  private static onNotFindUser(reject: Function) {
+    const message = 'Authentication failed. User not found.';
+    reject(UserBusiness.createResponseObject({message}));
+  }
+
   constructor(public repository: UserRepository = new UserRepository()) {}
 
   getAll(): Promise<Array<IUser>> {
@@ -72,25 +96,8 @@ export class UserBusiness implements IBaseBusiness<IUser> {
     return new Promise<Object>((resolve, reject) => {
       this.repository
         .findUser(user)
-        .then((userFound: IUser) => {
-          if (user.password !== userFound.password) {
-            resolve({
-              success: false,
-              message: 'Authentication failed. Wrong password.'
-            });
-          } else {
-            resolve({
-              success: true,
-              token: UserBusiness.getToken(user)
-            });
-          }
-        })
-        .catch(() => {
-          reject({
-            success: false,
-            message: 'Authentication failed. User not found.'
-          });
-        });
+        .then(UserBusiness.onFindUser.bind(null, user, resolve))
+        .catch(UserBusiness.onNotFindUser.bind(null, reject));
     });
   }
 }
