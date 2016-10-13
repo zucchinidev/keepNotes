@@ -1,0 +1,45 @@
+.auth {
+    height: 100%;
+}
+
+input {
+    border-bottom: 1px solid lightgrey;
+}
+
+.ng-invalid.ng-dirty {
+    border-bottom: 1px solid red;
+}
+
+form {
+    border-radius: 2px;
+    background-color: white;
+    padding: 20px;
+}
+
+input {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.inputs {
+    position: relative;
+}
+
+.link {
+    color: lightblue;
+    margin-left: 10px;
+}
+
+link:hover {
+    background-color: transparent;
+}
+
+.title {
+    font-size: 36px;
+    font-weight: 300;
+    text-transform: capitalize;
+}
+
+.error {
+    color: tomato;
+}

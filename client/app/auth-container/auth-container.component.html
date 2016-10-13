@@ -1,0 +1,62 @@
+<div class="auth row center-xs middle-xs">
+  <form class="col-xs-6 offset-xs-3 shadow"
+        #authForm="ngForm"
+        (ngSubmit)="authenticate()"
+  >
+    <div class="inputs row center-xs middle-xs">
+      <div class="col-xs-8 offset-xs-2">
+        <h3 class="col-xs-8 title">
+          {{mode}}
+        </h3>
+        <div class="form-group" *ngIf="!isSigninMode()">
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            placeholder="Name"
+            required
+            #name="ngModel"
+            [(ngModel)]="user.name"
+          >
+          <div class="error" [hidden]="name.valid || name.pristine">Name is required</div>
+        </div>
+        <div class="form-group">
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            placeholder="email"
+            required
+            #email="ngModel"
+            [(ngModel)]="user.email"
+          >
+          <div class="error" [hidden]="email.valid || email.pristine">Email is invalid</div>
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            placeholder="password"
+            required
+            #password="ngModel"
+            [(ngModel)]="user.password"
+          >
+          <div class="error" [hidden]="password.valid || password.pristine">Password is required</div>
+        </div>
+      </div>
+    </div>
+    <div class="row center-xs">
+      <div class="col-xs-8 offset-xs-2">
+        <button type="submit"
+                [disabled]="!authForm.form.valid"
+                class="btn btn-info">
+          {{mode}}
+        </button>
+        <a href="#" (click)="changeMode($event)" class="btn-light link">
+          {{linkText}}
+        </a>
+      </div>
+    </div>
+  </form>
+</div>
