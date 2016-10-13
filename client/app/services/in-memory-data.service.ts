@@ -38,8 +38,13 @@ export class InMemoryDataService implements InMemoryDbService {
       value: 'note here',
       color: 'yellow'
     }];
+    const signin = {
+      email: 'andrea@dale.com',
+      password: 'dale'
+    };
     return {
-      notes
+      notes,
+      signin
     };
   }
 

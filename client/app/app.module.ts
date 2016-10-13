@@ -19,6 +19,7 @@ import {Store} from './stores/store';
 import {StoreHelperService} from './services/store-helper.service';
 import {AuthContainerComponent} from './auth-container/auth-container.component';
 import {AuthService} from './services/auth.service';
+import {ApiService} from './services/api.service';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import {AuthService} from './services/auth.service';
     BrowserModule,
     FormsModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
+    // InMemoryWebApiModule.forRoot(InMemoryDataService),
     routing
   ],
   declarations: [
@@ -44,7 +45,8 @@ import {AuthService} from './services/auth.service';
     Store,
     StoreHelperService,
     NoteService,
-    AuthService
+    AuthService,
+    ApiService
   ],
   bootstrap: [
     AppRootComponent

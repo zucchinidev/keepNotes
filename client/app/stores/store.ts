@@ -5,10 +5,12 @@ import {INote} from '../interfaces/INote';
 
 export interface State {
   notes: INote[];
+  user: Object;
 }
 
 const defaultState: State = {
-  notes: []
+  notes: [],
+  user: {}
 };
 
 const _store = new BehaviorSubject<State>(defaultState);
