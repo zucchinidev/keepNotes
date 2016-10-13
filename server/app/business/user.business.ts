@@ -12,12 +12,13 @@ export class UserBusiness implements IBaseBusiness<IUser> {
     });
   }
 
-  private static createResponseObject({message, state = false, token}:
-    {message: string, state?: boolean, token?: string}) {
+  private static createResponseObject({message, state = false, user = {}, token}:
+    {message: string, state?: boolean, user?: Object, token?: string}) {
     return {
       success: state,
       message: message,
-      token: token
+      token: token,
+      user: user
     };
   }
 
@@ -27,7 +28,12 @@ export class UserBusiness implements IBaseBusiness<IUser> {
       resolve(UserBusiness.createResponseObject({message}));
     } else {
       const token = UserBusiness.getToken(userSend);
-      resolve(UserBusiness.createResponseObject({message: '', state: true, token}));
+      resolve(UserBusiness.createResponseObject({
+        message: '',
+        state: true,
+        user: userSend,
+        token
+      }));
     }
   }
 
@@ -36,7 +42,8 @@ export class UserBusiness implements IBaseBusiness<IUser> {
     reject(UserBusiness.createResponseObject({message}));
   }
 
-  constructor(public repository: UserRepository = new UserRepository()) {}
+  constructor(public repository: UserRepository = new UserRepository()) {
+  }
 
   getAll(): Promise<Array<IUser>> {
     return new Promise<Array<IUser>>((resolve, reject) => {
@@ -57,9 +64,11 @@ export class UserBusiness implements IBaseBusiness<IUser> {
   }
 
   create(item: IUser): Promise<IUser> {
+    const admin = false;
+    const user = Object.assign({admin}, item);
     return new Promise<IUser>((resolve, reject) => {
       this.repository
-        .create(item)
+        .create(user)
         .then(resolve)
         .catch(reject);
     });
@@ -99,5 +108,39 @@ export class UserBusiness implements IBaseBusiness<IUser> {
         .then(UserBusiness.onFindUser.bind(null, user, resolve))
         .catch(UserBusiness.onNotFindUser.bind(null, reject));
     });
+  }
+
+  signup(user: IUser): Promise<Object> {
+    return new Promise<Object>((resolve, reject) => {
+      this.repository
+        .findUser(user)
+        .then(this.onUserSearchCompleted.bind(this, resolve, user))
+        .catch(() => {
+          const message = 'Opps!! It seems that our technician has it wrong again.';
+          reject(UserBusiness.createResponseObject({message}));
+        });
+    });
+  }
+
+  private onUserSearchCompleted(resolve: Function, userSend: IUser, userFound: IUser) {
+    if (userFound) {
+      const message = 'User already exists.';
+      resolve(UserBusiness.createResponseObject({message}));
+    } else {
+      return this.create(userSend)
+        .then((userCreated) => {
+          const token = UserBusiness.getToken(userCreated);
+          resolve(UserBusiness.createResponseObject({
+            message: '',
+            state: true,
+            token,
+            user: userSend
+          }));
+        })
+        .catch((result) => {
+          const message = result.message;
+          resolve(UserBusiness.createResponseObject({message, state: true}));
+        });
+    }
   }
 }
