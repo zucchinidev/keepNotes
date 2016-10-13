@@ -26,7 +26,7 @@ export class StoreHelperService {
     const currentState = this.getCurrentState();
     const collection = currentState[prop];
     const items = collection.map((item: Object) => {
-      if (item['id'] !== state['id']) {
+      if (item['_id'] !== state['_id']) {
         return item;
       }
       return Object.assign({}, item, state);
@@ -38,11 +38,11 @@ export class StoreHelperService {
   }
 
 
-  findAndDelete(prop: string, id: number) {
+  findAndDelete(prop: string, _id: string) {
     const currentState = this.getCurrentState();
     const collection = currentState[prop];
     this.store.setState(Object.assign({}, currentState, {
-      [prop]: collection.filter((item: Object) => item['id'] !== id )
+      [prop]: collection.filter((item: Object) => item['_id'] !== _id )
     }));
   }
 
