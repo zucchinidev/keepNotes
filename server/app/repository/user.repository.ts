@@ -11,7 +11,7 @@ export class UserRepository extends BaseRepository<IUser> {
   findUser(item: IUser): Promise<IUser> {
     return this.model.findOne({
       email: item.email,
-      name: item.name
+      password: item.password
     }).exec();
   }
 }
