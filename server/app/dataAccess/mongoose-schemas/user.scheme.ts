@@ -14,7 +14,7 @@ export class UserScheme extends BaseScheme {
       },
       password: {
         type: String,
-        required: false
+        required: true
       },
       admin: {
         type: Boolean,
