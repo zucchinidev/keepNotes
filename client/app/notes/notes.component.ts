@@ -23,7 +23,9 @@ export class NotesComponent implements OnInit, OnDestroy {
     this.getNotes();
     // on store have the property changes
     this.subscription = this.store.changes.pluck('notes')
-      .subscribe((notes: any) => this.notes = notes);
+      .subscribe((notes: any) => {
+        this.notes = notes;
+      });
   }
 
   ngOnDestroy(): void {
@@ -33,7 +35,11 @@ export class NotesComponent implements OnInit, OnDestroy {
 
   onNoteChecked(note: INote, index: number) {
     this.noteService.remove(note)
-      .subscribe((n) => this.notes.splice(index, 1));
+      .subscribe(() => {
+        // Este borrado es innecesario, porque ya estamos suscritos a los cambios
+        // de nuestas notas como se puede apreciar en la línea 25.
+        // this.notes.splice(index, 1);
+      });
   }
 
   onCreateNote(note: INote) {
@@ -43,6 +49,8 @@ export class NotesComponent implements OnInit, OnDestroy {
 
   private getNotes() {
     this.noteService.getNotes()
-      .subscribe((res) => this.notes = res['data'] as INote[]);
+      .subscribe((res) => {
+        this.notes = res as INote[];
+      });
   }
 }
